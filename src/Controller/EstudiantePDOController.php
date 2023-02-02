@@ -67,9 +67,18 @@ class EstudiantePDOController
     $data["apellidos"] = "otro 2";
     $stmt->execute();
 
-    echo "se agregaron {$stmt->rowCount()} filas en la base de datos";
+    echo "se agregaron {$stmt->rowCount()} filas en la base de datos \n";
   }
-  public function show() {}
+  public function show(int $id) : array
+  {
+    $sqlQuery= "SELECT * FROM estudiante WHERE idestudiante = :id";
+    $stmt = $this->con->prepare($sqlQuery);
+    $stmt->execute([
+      ":id" => $id
+    ]);
+    $result = $stmt->fetch(\PDO::FETCH_ASSOC); 
+    return $result;
+  }
   public function edit(){}
   public function update(){}
   public function Destroy(){}
