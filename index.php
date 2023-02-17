@@ -34,3 +34,13 @@ foreach($listadoEstudiantes as $estudiante ){
  var_dump($estudiante2->show(2));
 
 $estudiante2->destroy(30);
+
+
+$estudiante2->update([
+  "idestudiante" => "1",
+  "dpi" => "987654321321",
+  "nombres" => "esteban marvin",
+  "apellidos" => "socop menchu",
+  "fecha_nacimiento"=>"2023-02-16 00:00:00",
+  "estado"=> enumEstudiante::Activo->value,
+]);

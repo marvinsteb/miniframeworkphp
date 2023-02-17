@@ -80,7 +80,29 @@ class EstudiantePDOController
     return $result;
   }
   public function edit(){}
-  public function update(){}
+  public function update($data){
+    
+    $query = "UPDATE estudiante
+              SET
+              dpi          = :dpi,
+              nombres      = :nombres,
+              apellidos    = :apellidos,
+              estado       = :estado,
+              fecha_nacimiento = :fecha_nacimiento
+              WHERE idestudiante = :idestudiante";
+    echo $query;
+    $stmt = $this->con->prepare($query);
+   
+    $stmt->execute([
+      ":idestudiante" => (int) $data["idestudiante"],
+      ":dpi" => $data["dpi"],
+      ":nombres" => $data["nombres"],
+      ":apellidos" => $data["apellidos"],
+      ":estado" => $data["estado"],
+      ":fecha_nacimiento" => $data["fecha_nacimiento"],
+    ]);
+    var_dump($stmt->debugDumpParams());
+  }
   public function destroy($id)
   {
     $this->con->BeginTransaction();
