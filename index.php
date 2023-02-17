@@ -32,3 +32,5 @@ foreach($listadoEstudiantes as $estudiante ){
 }
 
  var_dump($estudiante2->show(2));
+
+$estudiante2->destroy(30);

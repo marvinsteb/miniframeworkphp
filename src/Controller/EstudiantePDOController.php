@@ -81,7 +81,20 @@ class EstudiantePDOController
   }
   public function edit(){}
   public function update(){}
-  public function Destroy(){}
+  public function destroy($id)
+  {
+    $this->con->BeginTransaction();
+    $query = "DELETE FROM estudiante WHERE idestudiante = :id";
+    $stmt = $this->con->prepare($query);
+    $stmt->execute([
+      ":id" => $id,
+    ]);
+    $respuesta = readline("¿Estas seguro? Responde Y/N");
+    if($respuesta == "N")
+      $this->con->rollBack();
+    else 
+      $this->con->commit();
+  }
   public function __destruct() {
     //var_dump($this->con);
   }
