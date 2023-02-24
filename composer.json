@@ -12,7 +12,7 @@
       "Database\\": "database/"
     },
     "files": [
-      "src/Helpers.php"
+      "src/helpers.php"
     ]
   }
 }
