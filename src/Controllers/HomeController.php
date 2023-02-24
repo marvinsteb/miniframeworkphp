@@ -1,11 +1,11 @@
 <?php
 namespace App\Controllers;
-use App\Http\Response;
+
 class HomeController
 {
   /** muestra una lista de este recurso */
   public function index(){
-    return new Response('home');
+    return view('home');
   }
   /** muestra un formulario para crear un nuevo recurso*/
   public function create(){}
