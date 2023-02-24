@@ -24,7 +24,26 @@ class Request {
                             ? 'index' 
                             : $this->segmentsUrl[2] ;
   }
+  private function getController()
+  {
+    // home -> HomeController
+    $controller = ucfirst($this->controllerName);
+    return "App\Controllers\\{$controller}Controller";
+  }
+  private function getMethod()
+  {
+    return $this->methodName;
+  }
   public function send()
   {
+    $controller = $this->getController();
+    $method = $this->getMethod();
+
+    $response = call_user_func([
+      new $controller,
+      $method
+    ]);
+    $response->send();
+
   }
 }
